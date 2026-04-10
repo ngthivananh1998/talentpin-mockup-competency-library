@@ -33,7 +33,7 @@ function LibraryContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
           <Link href="/" className="hover:text-[#7C3AED]">Home</Link>
           <span>/</span>
@@ -41,9 +41,19 @@ function LibraryContent() {
         </div>
         <h1 className="text-3xl font-bold text-[#1E1B4B] mb-2">Competency Library</h1>
         <p className="text-gray-500 max-w-2xl">
-          Browse ~99 competencies across six domains — built on Canadian national frameworks.
+          Browse competencies across six domains — built on Canadian national frameworks.
           Each entry includes a definition, proficiency levels, behavioural indicators, and evidence guidance.
         </p>
+      </div>
+
+      {/* Demo notice */}
+      <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-8 text-sm text-amber-800">
+        <span className="text-base shrink-0 mt-0.5">🧪</span>
+        <div>
+          <span className="font-semibold">Prototype — sample data only.</span>{" "}
+          This demo shows <span className="font-semibold">{competencies.length} of ~99 planned competencies</span> across all 6 domains.
+          The full library will include ~99 items mapped to IRCC · ESDC · TBS · OaSIS 2025 frameworks.
+        </div>
       </div>
 
       {/* Search */}
