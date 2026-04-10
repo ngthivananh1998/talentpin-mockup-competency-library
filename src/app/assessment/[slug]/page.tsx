@@ -184,22 +184,32 @@ export default function AssessmentPage({ params }: Props) {
             rows={7}
             className="w-full border border-gray-200 rounded-xl p-4 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/30 focus:border-[#7C3AED] mb-2"
           />
-          <div className="text-xs text-gray-400 text-right mb-5">
-            {scenarioResponse.trim().split(/\s+/).filter(Boolean).length} words
-            <span className="ml-2 text-gray-300">· Suggested: 100–200 words</span>
-          </div>
+          {(() => {
+            const wordCount = scenarioResponse.trim().split(/\s+/).filter(Boolean).length;
+            const ready = wordCount >= 5;
+            return (
+              <>
+                <div className="flex items-center justify-between text-xs mb-5">
+                  <span className={ready ? "text-green-600 font-medium" : "text-gray-400"}>
+                    {ready ? "✓ Ready to continue" : `${wordCount} / 5 words minimum`}
+                  </span>
+                  <span className="text-gray-300">{wordCount} words · Suggested: 100–200</span>
+                </div>
 
-          <div className="flex gap-3">
-            <button onClick={() => setStep(1)}
-              className="flex-1 bg-white border border-gray-200 text-gray-600 py-3 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors">
-              ← Back
-            </button>
-            <button onClick={() => setStep(3)}
-              disabled={scenarioResponse.trim().split(/\s+/).filter(Boolean).length < 20}
-              className="flex-[2] bg-[#7C3AED] text-white py-3 rounded-xl font-semibold text-sm hover:bg-[#6D28D9] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
-              Continue to Evidence →
-            </button>
-          </div>
+                <div className="flex gap-3">
+                  <button onClick={() => setStep(1)}
+                    className="flex-1 bg-white border border-gray-200 text-gray-600 py-3 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors">
+                    ← Back
+                  </button>
+                  <button onClick={() => setStep(3)}
+                    disabled={!ready}
+                    className="flex-[2] bg-[#7C3AED] text-white py-3 rounded-xl font-semibold text-sm hover:bg-[#6D28D9] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+                    Continue to Evidence →
+                  </button>
+                </div>
+              </>
+            );
+          })()}
         </div>
       )}
 
