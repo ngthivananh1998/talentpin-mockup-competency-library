@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/library/jobs", label: "Job Profiles" },
   { href: "/assessment", label: "Assessment" },
 ];
+// Note: /signup and /login show "Under Development" pages
 
 export default function Navbar() {
   const pathname = usePathname();
